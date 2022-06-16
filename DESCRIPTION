@@ -1,0 +1,28 @@
+Package: edr
+Type: Package
+Title: Package containing functions to manage Error Distribution Rules
+Version: 0.0.1
+Author: João Pimentel <jony.pi10@gmail.com>
+Maintainer: João Pimentel <jony.pi10@gmail.com>
+Description: Error Distribution Rules are a combination between Distribution Rules and Error Dependence Plots.
+    These are model agnostic and a drill-down technique to evaluate regression models, which consider
+    multivariate interactions between features. EDRs uncover regions of the input space with deviating
+    performance providing an interpretable description of these regions. They can be regarded as a
+    complementary tool to the standard reporting of the expected average predictive performance. Moreover,
+    by providing interpretable descriptions of these specific regions, EDRs allow end users to understand
+    the dangers of using regression tools for some specific cases that fall on these regions, e.g., they
+    improve the accountability of models. This package contains multiple methods to graphically visualize
+    data frames composed of such rules.
+Depends: R (>= 4.2.0)
+Imports: dplyr (>= 1.0.9),
+  ggplot2 (>= 3.3.6),
+  gridExtra (>= 2.3),
+  igraph (>= 1.3.1),
+  tibble (>= 3.1.7),
+  tidyr (>= 1.2.0),
+  stringr (>= 1.4.0),
+  visNetwork (>= 2.1.0)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.0
