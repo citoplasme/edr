@@ -35,7 +35,8 @@
 #'
 #' calculate_error(c(1,2,3,4,5,5), c(0,0,2,3,6,2), type="ResiDual")
 #' # returns c(1,2,1,1,-1,3)
-
+#' @import dplyr
+#' @export
 calculate_error <- function(real, predicted, type = "Absolute") {
   switch(
     type %>% tolower(),
@@ -68,7 +69,8 @@ calculate_error <- function(real, predicted, type = "Absolute") {
 #' single_model_data(df = iris, iris$Sepal.Length + runif(length(iris$Sepal.Length), -1, 1), feature_y = "Sepal.Length", type = "Residual", output_predictions = TRUE, output_target = FALSE)
 #'
 #' single_model_data(df = iris, iris$Sepal.Length + runif(length(iris$Sepal.Length), -1, 1), feature_y = "Sepal.Length", type = "Residual", output_predictions = TRUE, output_target = TRUE)
-
+#' @import dplyr
+#' @export
 single_model_data <- function(df, predicted, feature_y, type = "Absolute", output_predictions = FALSE, output_target = FALSE) {
   y <- df %>% pull(feature_y)
   df %>% select(c(!matches(feature_y), if(isTRUE(output_target)) matches(feature_y) else NULL)) %>%

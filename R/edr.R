@@ -1,13 +1,3 @@
-suppressMessages(library(dplyr))
-suppressMessages(library(stringr))
-suppressMessages(library(tibble))
-suppressMessages(library(ggplot2))
-suppressMessages(library(grid))
-suppressMessages(library(gridExtra))
-suppressMessages(library(visNetwork))
-suppressMessages(library(igraph))
-suppressMessages(library(tidyr))
-
 # antecedent_support, p_value, kurtosis, skewness, mean, median, mode, standard_deviation, distribution_values, feature_conditions
 # Number, Number, Number, Number, Number, Number, Number, Number, List(Number), List(String)
 
@@ -34,7 +24,9 @@ suppressMessages(library(tidyr))
 #' plot_single_subgroup(subgroup_conditions = t[1,]$feature_conditions, subgroup_distribution = t[1,]$distribution_values %>% unlist(use.names = FALSE), reference_conditions = t[nrow(t),]$feature_conditions, reference_distribution = t[nrow(t),]$distribution_values %>% unlist(use.names = FALSE), type = "histogram", label = "error")
 #' plot_single_subgroup(subgroup_conditions = t[1,]$feature_conditions, subgroup_distribution = t[1,]$distribution_values %>% unlist(use.names = FALSE), reference_conditions = t[nrow(t),]$feature_conditions, reference_distribution = t[nrow(t),]$distribution_values %>% unlist(use.names = FALSE), type = "scatterplot", label = "error")
 #' plot_single_subgroup(subgroup_conditions = t[1,]$feature_conditions, subgroup_distribution = t[1,]$distribution_values %>% unlist(use.names = FALSE), reference_conditions = t[nrow(t),]$feature_conditions, reference_distribution = t[nrow(t),]$distribution_values %>% unlist(use.names = FALSE), type = "violinplot", label = "error")
-
+#' @import dplyr
+#' @import ggplot2
+#' @export
 plot_single_subgroup <- function(subgroup_conditions, subgroup_distribution, reference_conditions, reference_distribution, type = "Boxplot", label = "error") {
   # Subgroup information
   subgroup_text <- paste(subgroup_conditions %>% unlist() %>% sort(), collapse = ",\n")
@@ -113,10 +105,12 @@ plot_single_subgroup <- function(subgroup_conditions, subgroup_distribution, ref
 #' plot_grid_single_subgroup(t, reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "histogram")
 #' plot_grid_single_subgroup(t, reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "scatterplot", label = "error", items_per_page = 4)
 #' plot_grid_single_subgroup(t, reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "violinplot", label = "error", items_per_page = 4)
-
+#' @import grid
+#' @import gridExtra
+#' @export
 plot_grid_single_subgroup <- function(rules, reference_conditions, reference_distribution, page = 1, label = "error", type = "Boxplot", items_per_page = 4) {
   if (identical(type %>% tolower(), "boxplot") == FALSE && identical(type %>% tolower(), "density") == FALSE && identical(type %>% tolower(), "dotplot") == FALSE && identical(type %>% tolower(), "histogram") == FALSE && identical(type %>% tolower(), "scatterplot") == FALSE && identical(type %>% tolower(), "violinplot") == FALSE) {
-    stop("Invalid plot type: Boxplot, Density, Dotplot, Histogram or Scatterplot.")
+    stop("Invalid plot type: Boxplot, Density, Dotplot, Histogram, Scatterplot or Violinplot.")
   }
   # Number of items
   items <- 1:nrow(rules)
@@ -155,7 +149,9 @@ plot_grid_single_subgroup <- function(rules, reference_conditions, reference_dis
 #' plot_multiple_subgroups(rules = t %>% head(5), reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), title = "First 5 Subgroups", label = "error", type = "Histogram")
 #' plot_multiple_subgroups(rules = t %>% head(5), reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), title = "First 5 Subgroups", label = "error", type = "Scatterplot")
 #' plot_multiple_subgroups(rules = t %>% head(5), reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), title = "First 5 Subgroups", label = "error", type = "ViolinPlot")
-
+#' @import dplyr
+#' @import ggplot2
+#' @export
 plot_multiple_subgroups <- function(rules, reference_conditions, reference_distribution, title = "", label = "error", type = "Boxplot") {
   # Named list for each subgroup to keep track of number of instances
   instance_count <- list()

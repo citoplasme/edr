@@ -5,7 +5,8 @@
 #' @return A vector of strings representing the feature conditions that define the subgroups in the input data frame.
 #' @examples
 #' get_subgroups(rules)
-
+#' @import dplyr
+#' @export
 get_subgroups <- function(rules) {
   rules %>% select(feature_conditions) %>%
     mutate(feature_conditions = paste(feature_conditions %>% unlist() %>% sort(), collapse = ", ")) %>%
@@ -20,7 +21,10 @@ get_subgroups <- function(rules) {
 #' @return A numeric vector that replicates each value by its count.
 #' @examples
 #' caren_distribution_as_vector("error={1/2,3/1}")
-
+#' @import dplyr
+#' @import stringr
+#' @import tibble
+#' @export
 caren_distribution_as_vector <- function(caren_distribution) {
   caren_distribution %>% str_replace_all(pattern = "[a-zA-Z\\=\\{\\}\\ ]", replacement = "") %>%
     str_split(pattern = ",") %>% unlist() %>% as_tibble_col(column_name = "data") %>%
@@ -38,7 +42,8 @@ caren_distribution_as_vector <- function(caren_distribution) {
 #' @return A vector of strings representing the feature conditions that define the subgroups in the input data frame.
 #' @examples
 #' filter_subgroups(rules, regex = "lstat=]")
-
+#' @import dplyr
+#' @export
 filter_subgroups <- function(rules, regex = "") {
   rules %>% select(feature_conditions) %>%
     mutate(feature_conditions = paste(feature_conditions %>% unlist() %>% sort(), collapse = ", ")) %>%

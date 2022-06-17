@@ -26,7 +26,9 @@
 #' plot_multiple_models(rules = rbind(rule_1, rule_2, reference_1, reference_2), title = "Example of a title", label = "errors", type = "hisTOgRAM")
 #' plot_multiple_models(rules = rbind(rule_1, rule_2, reference_1, reference_2), title = "Example of a title", label = "errors", type = "Scatterplot")
 #' plot_multiple_models(rules = rbind(rule_1, rule_2, reference_1, reference_2), title = "Example of a title", label = "errors", type = "Violinplot")
-
+#' @import dplyr
+#' @import ggplot2
+#' @export
 plot_multiple_models <- function(rules, title = "", label = "error", type = "Boxplot") {
   # Generate a legend for each plot
   legend <- list()

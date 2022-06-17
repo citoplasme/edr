@@ -11,7 +11,9 @@
 #' @examples
 #' performance_boxplots(rules = t %>% head(-1), reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), label = "error")
 #' performance_boxplots(rules = t %>% head(40), reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), label = "error")
-
+#' @import dplyr
+#' @import ggplot2
+#' @export
 performance_boxplots <- function(rules, reference_conditions, reference_distribution, label = "") {
   # Initialize data frame
   df <- data.frame(matrix(nrow = 0, ncol = 2))

@@ -9,7 +9,8 @@
 #' @return A named list of two data frames: \code{vertices}, being composed of all graph vertices, and \code{edges}, containing all connections between vertices.
 #' @examples
 #' create_graph(example_rules, 0.5)
-
+#' @import dplyr
+#' @export
 create_graph <- function(rules, reference_value) {
   # Initialize edge data frame with column names
   edges <- data.frame(data.frame(matrix(ncol = 2, nrow = 0)))
@@ -76,7 +77,10 @@ create_graph <- function(rules, reference_value) {
 #' @examples
 #' graph_data <- example_rules %>% create_graph(0.5)
 #' plot_graph(graph_data$vertices, graph_data$edges)
-
+#' @import dplyr
+#' @import igraph
+#' @import visNetwork
+#' @export
 plot_graph <- function(vertices, edges) {
   visNetwork(vertices, edges) %>%
     visOptions(highlightNearest = list(enabled = TRUE, hover = TRUE, algorithm = "hierarchical"), nodesIdSelection = TRUE) %>%
