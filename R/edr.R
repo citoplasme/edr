@@ -1,11 +1,3 @@
-# antecedent_support, p_value, kurtosis, skewness, mean, median, mode, standard_deviation, distribution_values, feature_conditions
-# Number, Number, Number, Number, Number, Number, Number, Number, List(Number), List(String)
-
-###############################################################################
-############################ Graphical Analysis ###############################
-###############################################################################
-
-
 #' Plots the distributions of the input subgroup and reference.
 #' @description
 #' This function generates one canvas with two distributions, one representing the subgroup and another representing the reference.
