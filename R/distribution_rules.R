@@ -26,11 +26,11 @@ get_subgroups <- function(rules) {
 #' @import tibble
 #' @export
 caren_distribution_as_vector <- function(caren_distribution) {
-  caren_distribution %>% str_replace_all(pattern = "[a-zA-Z\\=\\{\\}\\ ]", replacement = "") %>%
-    str_split(pattern = ",") %>% unlist() %>% as_tibble_col(column_name = "data") %>%
-    mutate(value = str_split_fixed(string = data, pattern = "/", n = 2)) %>% select(value) %>%
+  caren_distribution %>% stringr::str_replace_all(pattern = "[a-zA-Z\\=\\{\\}\\ ]", replacement = "") %>%
+    stringr::str_split(pattern = ",") %>% unlist() %>% tibble::as_tibble_col(column_name = "data") %>%
+    mutate(value = stringr::str_split_fixed(string = data, pattern = "/", n = 2)) %>% select(value) %>%
     mutate(count = value[,2] %>% as.numeric(digits = 15), value = value[,1] %>% as.numeric(digits = 15)) %>%
-    rep(.$value, .$count) %>%
+    rep(x = .$value, times = .$count) %>%
     return()
 }
 

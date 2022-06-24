@@ -10,26 +10,25 @@ Error Distribution Rules (EDRs) are a combination between Distribution Rules and
 
 Install the package using your R console:
 
-`install.packages('edr')` 
-
-or
-
 `devtools::install_github('citoplasme/edr')`
 
-The data frames have to be in the following format:
-Columns: antecedent_support, p_value, kurtosis, skewness, mean, median, mode, standard_deviation, distribution_values, feature_conditions
-Column Type: Number, Number, Number, Number, Number, Number, Number, Number, List(Number), List(String)
+## Guidelines
+
+The input data frames have to follow the format:
+
+| antecedent_support | p_value | kurtosis | skewness | mean | median | mode | standard_deviation | distribution_values | feature_conditions |
+|---|---|---|---|---|---|---|---|---|---|
+| Number | Number | Number | Number | Number | Number | Number | Number | List(Number) | List(String) |
 
 ## Illustrative examples
 
 ```
 # Using the illustrative data attached to the package
-data("test_data_v2")
-
+data("example_rules")
 
 
 ```
 
 ### Contact:
 
-For any bug report or suggestion please contact me at jony.pi10@gmail.com
+For any bug report or suggestion please contact me via the [Issues](/issues) section.
