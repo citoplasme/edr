@@ -80,5 +80,6 @@ counter_factual_subgroups <- function(rules, reference_quantiles) {
       counter_factuals <- counter_factuals[-i]
     }
   }
+  # Remove all NULL values from the list
   counter_factuals[-which(sapply(counter_factuals, is.null))] %>% return()
 }
