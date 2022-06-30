@@ -3,6 +3,7 @@
 export(calculate_error)
 export(calculate_quantiles)
 export(caren_distribution_as_vector)
+export(counter_factual_subgroups)
 export(create_graph)
 export(filter_subgroups)
 export(get_subgroups)
