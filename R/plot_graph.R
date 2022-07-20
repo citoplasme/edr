@@ -10,7 +10,6 @@
 #' graph_data <- example_rules %>% create_graph(0.5)
 #' plot_graph(graph_data$vertices, graph_data$edges)
 #' @import dplyr
-#' @import igraph
 #' @import visNetwork
 #' @export
 plot_graph <- function(vertices, edges) {
