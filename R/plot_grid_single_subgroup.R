@@ -18,7 +18,7 @@
 #' plot_grid_single_subgroup(t, reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "scatterplot", label = "error", items_per_page = 4)
 #' plot_grid_single_subgroup(t, reference_conditions = t %>% tail(1) %>% pull(feature_conditions), reference_distribution = t %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "violinplot", label = "error", items_per_page = 4)
 #' @import grid
-#' @import gridExtra
+#' @importFrom gridExtra arrangeGrob grid.arrange
 #' @export
 plot_grid_single_subgroup <- function(rules, reference_conditions, reference_distribution, page = 1, label = "error", type = "Boxplot", items_per_page = 4) {
   if (identical(type %>% tolower(), "boxplot") == FALSE && identical(type %>% tolower(), "density") == FALSE && identical(type %>% tolower(), "dotplot") == FALSE && identical(type %>% tolower(), "histogram") == FALSE && identical(type %>% tolower(), "scatterplot") == FALSE && identical(type %>% tolower(), "violinplot") == FALSE) {

@@ -51,14 +51,21 @@ plot_single_subgroup(subgroup_conditions = example_rules[1,]$feature_conditions,
 # Plot multiple subgroups, having the whole error distribution as reference
 plot_multiple_subgroups(rules = example_rules %>% head(5), reference_conditions = example_rules %>% tail(1) %>% pull(feature_conditions), reference_distribution = example_rules %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), title = "First 5 Subgroups", label = "error", type = "density")
 
+# Plot a grid of plots comparing inidividual subgroups with a reference
+plot_grid_single_subgroup(example_rules, reference_conditions = example_rules %>% tail(1) %>% pull(feature_conditions), reference_distribution = example_rules %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "boxplot", label = "error", items_per_page = 4)
 
-
-
-plot_multiple_models(rules = rbind(rule_1, rule_2), title = "Example of a title", label = "errors", type = "boxPlot")
-
-
-plot_grid_single_subgroup(example_rules, reference_conditions = example_rules %>% tail(1) %>% pull(feature_conditions), reference_distribution = example_rules %>% tail(1) %>% pull(distribution_values) %>% unlist(use.names = FALSE), type = "boxplot", label = "error", items_per_page = 6)
+# Plot subgroups shared by multiple models
+rule_1 <- example_rules %>% head(1) %>% mutate(model = "SVM")
+rule_2 <- rule_1 %>% mutate(distribution_values = (distribution_values %>% unlist(use.names = FALSE) + runif(distribution_values %>% unlist(use.names = FALSE) %>% length(), -1, 1)) %>% list(), model = "ANN")
+reference_1 <- example_rules %>% tail(1) %>% mutate(model = "SVM")
+reference_2 <- reference_1 %>% mutate(distribution_values = (distribution_values %>% unlist(use.names = FALSE) + runif(distribution_values %>% unlist(use.names = FALSE) %>% length(), -1, 1)) %>% list(), model = "ANN")
+plot_multiple_models(rules = rbind(rule_1, rule_2, reference_1, reference_2), title = "Example of a title", label = "errors", type = "violinplot")
 ```
+
+### To Do:
+
+Unit and automated testing is to be implemented.
+
 
 ### Contact:
 
